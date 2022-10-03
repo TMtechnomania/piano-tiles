@@ -30,7 +30,6 @@ function gameOver(score, e) {
 	document.querySelector("#best-score").innerText = score.highScore;
 	document.querySelector("#total-score").innerText = score.currentScore;
 }
-
 function handleClickBlackTile(e, score, dataIndex) {
 	const targetTile = e.target;
 	dataIndex[1] = targetTile.dataset.index;
@@ -39,6 +38,16 @@ function handleClickBlackTile(e, score, dataIndex) {
 	const updatedScore = updateScore(score);
 	document.querySelector("#current-score").innerText =
 		updatedScore.currentScore;
+
+		let element = document.getElementById("current-score").innerHTML;
+		if(element == 5){
+			document.querySelector("#current-score").classList.remove("speed");
+			document.querySelector("#current-score").classList.add("speed-1x");
+		}
+	if(score.currentScore > score.highScore)
+	{
+		document.querySelector("#high-score").innerHTML = score.currentScore;
+	}
 	targetTile.style.pointerEvents = "none";
 	if (checkIfGameOver(dataIndex)) {
 		gameOver(score);
